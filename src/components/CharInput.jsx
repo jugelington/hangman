@@ -8,8 +8,9 @@ class CharInput extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        Letter:
+        <h2>Letter: </h2>
         <input
+          className="charInputBox"
           type="text"
           value={this.state.currentChar}
           onChange={this.handleChange}

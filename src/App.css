@@ -1,0 +1,23 @@
+body {
+  background: rgb(200, 221, 228);
+  width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+h2 {
+  display: inline-block;
+}
+
+.wordDisplay {
+  font-size: 50px;
+}
+
+.charInputBox {
+  width: 40px;
+  height: 40px;
+  font-size: 35px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  margin: 10px;
+}
