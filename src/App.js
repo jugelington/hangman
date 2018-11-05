@@ -8,10 +8,10 @@ import Lives from './components/Lives';
 import CharInput from './components/CharInput';
 import GuessedLetters from './components/GuessedLetters';
 import faker from 'faker';
+import NewGame from './components/NewGame';
 
 class App extends Component {
   state = {
-    currentPlayer: 'None',
     currentWord: [],
     guessedLetters: [],
     lives: 10
@@ -21,8 +21,8 @@ class App extends Component {
     return (
       <body>
         <Header />
+        <NewGame resetGame={this.resetGame} />
         <WordPicker formatWord={this.formatWord} randomWord={this.randomWord} />
-        {/* <TurnIndicator currentPlayer={this.state.currentPlayer} /> */}
         <WordDisplay currentWord={this.state.currentWord} />
         <Lives lives={this.state.lives} />
         <CharInput makeGuess={this.makeGuess} />
@@ -30,6 +30,27 @@ class App extends Component {
       </body>
     );
   }
+
+  componentDidMount() {
+    const savedGame = localStorage.getItem('gameState');
+    if (savedGame) this.setState(JSON.parse(savedGame));
+  }
+
+  componentDidUpdate() {
+    this.saveGame();
+  }
+
+  saveGame = () => {
+    localStorage.setItem('gameState', JSON.stringify(this.state));
+  };
+
+  resetGame = () => {
+    this.setState({
+      currentWord: [],
+      guessedLetters: [],
+      lives: 10
+    });
+  };
 
   randomWord = event => {
     event.preventDefault();
