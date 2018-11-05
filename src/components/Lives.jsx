@@ -1,8 +1,16 @@
 import React from 'react';
 
-const Lives = props => {
+const Lives = ({ lives, winner }) => {
   return (
-    <p>{props.lives > 0 ? <p>Lives: {props.lives}</p> : <p>U ded :(</p>}</p>
+    <p>
+      {lives <= 0 ? (
+        <p className="dead">u ded :(</p>
+      ) : winner ? (
+        <p className="win">win :)</p>
+      ) : (
+        <p>Lives: {lives}</p>
+      )}
+    </p>
   );
 };
 

@@ -21,3 +21,13 @@ h2 {
   text-align: center;
   margin: 10px;
 }
+
+.dead {
+  color: red;
+  font-size: 60px;
+}
+
+.win {
+  color: green;
+  font-size: 60px;
+}

@@ -14,7 +14,8 @@ class App extends Component {
   state = {
     currentWord: [],
     guessedLetters: [],
-    lives: 10
+    lives: 10,
+    winner: false
   };
 
   render() {
@@ -24,7 +25,7 @@ class App extends Component {
         <NewGame resetGame={this.resetGame} />
         <WordPicker formatWord={this.formatWord} randomWord={this.randomWord} />
         <WordDisplay currentWord={this.state.currentWord} />
-        <Lives lives={this.state.lives} />
+        <Lives lives={this.state.lives} winner={this.state.winner} />
         <CharInput makeGuess={this.makeGuess} />
         <GuessedLetters guessedLetters={this.state.guessedLetters} />
       </body>
@@ -48,7 +49,8 @@ class App extends Component {
     this.setState({
       currentWord: [],
       guessedLetters: [],
-      lives: 10
+      lives: 10,
+      winner: false
     });
   };
 
@@ -62,7 +64,7 @@ class App extends Component {
     const wordArr = word.split('').reduce((array, letter) => {
       array.push({
         char: letter,
-        found: false
+        found: letter === ' ' ? true : false
       });
       return array;
     }, []);
@@ -115,7 +117,7 @@ class App extends Component {
     // if (this.state.lives <= 0) alert('u ded');
     const foundArr = word.map(letter => letter.found);
     if (foundArr.every(value => value === true)) {
-      alert('win :)');
+      this.setState({ winner: true });
     }
   };
 }
